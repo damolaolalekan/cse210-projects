@@ -19,25 +19,24 @@ class Scripture
         }
     }
 
-    public void HideRandomWords(int numberToHide)
+   public void HideRandomWords(int numberToHide)
+{
+    int count = 0;
+
+    while (count < numberToHide)
     {
-        int count = 0;
+        int index = _random.Next(_words.Count);
 
-        while (count < numberToHide)
+        if (!_words[index].IsHidden())
         {
-            int index = _random.Next(_words.Count);
-
-            if (!_words[index].IsHidden())
-            {
-                _words[index].Hide();
-                count++;
-            }
-
-            if (IsCompletelyHidden())
-                break;
+            _words[index].Hide();
+            count++;
         }
-    }
 
+        if (IsCompletelyHidden())
+            break;
+    }
+}
     public string GetDisplayText()
     {
         string text = _reference.GetDisplayText() + " ";
